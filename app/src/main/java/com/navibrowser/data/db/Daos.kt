@@ -48,6 +48,9 @@ interface PasswordDao {
     @Query("SELECT * FROM saved_passwords ORDER BY updatedAt DESC")
     fun getAllFlow(): Flow<List<SavedPassword>>
 
+    @Query("SELECT * FROM saved_passwords ORDER BY updatedAt DESC")
+    suspend fun getAllOnce(): List<SavedPassword>
+
     @Query("SELECT * FROM saved_passwords WHERE domain = :domain LIMIT 1")
     suspend fun findByDomain(domain: String): SavedPassword?
 

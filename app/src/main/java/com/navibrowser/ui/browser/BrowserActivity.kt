@@ -51,7 +51,16 @@ class BrowserActivity : AppCompatActivity() {
     // 视频嗅探 FAB（动态添加，不占布局）
     private var videoFab: FloatingActionButton? = null
     private val sniffedVideos = mutableListOf<VideoSniffer.SniffedVideo>()
-    private var lastFillUrl = ""
+
+    // ── 密码相关 ──
+    // 当前显示的保存密码弹窗（防止同一组凭据弹多个对话框）
+    private var savePasswordDialog: AlertDialog? = null
+    // 已经弹过保存提示的 (domain, username, password) 三元组，避免重复弹窗
+    private val promptedCredentials = mutableSetOf<Triple<String, String, String>>()
+    // 当前域名已忽略保存（点过“不保存”），本次访问不再打扰
+    private val dismissedDomains = mutableSetOf<String>()
+    // 密码填充 FAB
+    private var fillFab: FloatingActionButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +74,7 @@ class BrowserActivity : AppCompatActivity() {
         observeViewModel()
         applyAppearanceSettings()
         setupVideoFab()
+        setupFillFab()
 
         openNewTab()
 
@@ -129,6 +139,34 @@ class BrowserActivity : AppCompatActivity() {
         (binding.root as ViewGroup).addView(fab, lp)
         videoFab = fab
         fab.setOnClickListener { showVideoList() }
+    }
+
+    // ── 密码填充 FAB ──────────────────────────────────────────────────────
+    /** 当当前站点存在已保存凭据时显示，点击后填充用户名 / 密码。 */
+    private fun setupFillFab() {
+        val fab = FloatingActionButton(this).apply {
+            size = FloatingActionButton.SIZE_MINI
+            // 用系统钥匙图标，无需新增 drawable 资源
+            setImageResource(android.R.drawable.ic_lock_lock)
+            contentDescription = getString(R.string.fill_password)
+            visibility = View.GONE
+        }
+        val lp = FrameLayout.LayoutParams(
+            FrameLayout.LayoutParams.WRAP_CONTENT,
+            FrameLayout.LayoutParams.WRAP_CONTENT
+        ).apply {
+            // 放在左下角，避免与右下角的视频 FAB 冲突
+            gravity = Gravity.BOTTOM or Gravity.START
+            setMargins(72, 0, 0, 72)
+        }
+        (binding.root as ViewGroup).addView(fab, lp)
+        fillFab = fab
+        fab.setOnClickListener { onFillFabClicked() }
+        fab.setOnLongClickListener {
+            // 长按跳转到密码管理器
+            startActivity(Intent(this, com.navibrowser.ui.password.PasswordManagerActivity::class.java))
+            true
+        }
     }
 
     private fun showVideoFound(video: VideoSniffer.SniffedVideo) {
@@ -214,6 +252,13 @@ class BrowserActivity : AppCompatActivity() {
                 // 页面切换时清空视频列表
                 sniffedVideos.clear()
                 videoFab?.visibility = View.GONE
+                // 跳转新页面时先隐藏填充按钮，等加载完成后再决定
+                if (!url.startsWith("http") || isIncognito) {
+                    fillFab?.visibility = View.GONE
+                }
+                // 切换域名时重置忽略保存标记，让用户在新站点能再次收到提示
+                val newHost = UrlUtils.getDomain(url)
+                if (newHost != null) dismissedDomains.retainAll(setOf(newHost))
             }
         }
         webViewManager.onTitleChanged = { title ->
@@ -227,20 +272,16 @@ class BrowserActivity : AppCompatActivity() {
             runOnUiThread {
                 binding.progressBar.isVisible = progress in 1..99
                 binding.progressBar.progress = progress
-                if (progress == 0) lastFillUrl = ""
                 if (progress == 100) {
                     val url = viewModel.currentUrl.value ?: return@runOnUiThread
                     val title = viewModel.currentTitle.value ?: return@runOnUiThread
                     if (!isIncognito && url.startsWith("http")) viewModel.addToHistory(title, url)
                     injectMatchingUserScripts(url)
-                    lifecycleScope.launch {
-                        val url2 = viewModel.currentUrl.value ?: return@launch
-                        val domain2 = UrlUtils.getDomain(url2) ?: return@launch
-                        val creds = viewModel.getPasswordForDomain(domain2) ?: return@launch
-                        if (url2 != lastFillUrl) {
-                            lastFillUrl = url2
-                            showFillCredentialsSnackbar(domain2, creds.first, creds.second)
-                        }
+                    // 刷新当前站点的已保存凭据状态，触发填充按钮显示
+                    if (!isIncognito && url.startsWith("http")) {
+                        viewModel.refreshSavedCredentialForCurrentUrl()
+                    } else {
+                        fillFab?.visibility = View.GONE
                     }
                 }
             }
@@ -355,6 +396,20 @@ class BrowserActivity : AppCompatActivity() {
         viewModel.pendingCredentials.observe(this) { creds ->
             creds?.let { (domain, username, password) -> showSavePasswordDialog(domain, username, password) }
         }
+        // 当前站点有已保存凭据 → 显示填充按钮；否则隐藏
+        viewModel.savedCredentialForSite.observe(this) { saved ->
+            if (saved == null) {
+                fillFab?.visibility = View.GONE
+            } else {
+                // 主页 / 无痕模式下不显示
+                val url = viewModel.currentUrl.value ?: ""
+                if (isIncognito || !url.startsWith("http")) {
+                    fillFab?.visibility = View.GONE
+                } else {
+                    fillFab?.visibility = View.VISIBLE
+                }
+            }
+        }
     }
 
     // ── 加载页面 ──────────────────────────────────────────────────────────
@@ -371,6 +426,8 @@ class BrowserActivity : AppCompatActivity() {
     private fun showHomeScreen() {
         binding.webViewContainer.isVisible = false
         binding.homeContainer.isVisible = true
+        // 主页不显示填充按钮
+        fillFab?.visibility = View.GONE
         val incogTag = if (isIncognito) "🕵️ " else ""
         binding.tvTitle.text = "${incogTag}主页"
         binding.etAddress.isVisible = false; binding.tvTitle.isVisible = true
@@ -397,6 +454,9 @@ class BrowserActivity : AppCompatActivity() {
         isIncognito = tab.isIncognito
         val url = tab.info.url
         if (url.isEmpty() || url == "navi://home") loadUrl("navi://home") else loadUrl(url)
+        // 切换标签后，刷新当前标签对应站点的凭据状态
+        if (!isIncognito && url.startsWith("http")) viewModel.refreshSavedCredentialForCurrentUrl()
+        else fillFab?.visibility = View.GONE
     }
 
     private fun showTabList() { TabListFragment().show(supportFragmentManager, "tabs") }
@@ -419,6 +479,10 @@ class BrowserActivity : AppCompatActivity() {
             sheet.dismiss(); startActivity(Intent(this, DownloadManagerActivity::class.java)) }
         view.findViewById<LinearLayout>(R.id.menuAddShortcut).setOnClickListener {
             sheet.dismiss(); addCurrentPageToShortcuts() }
+        view.findViewById<LinearLayout?>(R.id.menuSavePassword)?.setOnClickListener {
+            sheet.dismiss(); manualSavePasswordForCurrentSite() }
+        view.findViewById<LinearLayout?>(R.id.menuPasswordManager)?.setOnClickListener {
+            sheet.dismiss(); startActivity(Intent(this, com.navibrowser.ui.password.PasswordManagerActivity::class.java)) }
         view.findViewById<LinearLayout>(R.id.menuUserscripts).setOnClickListener {
             sheet.dismiss(); startActivity(Intent(this, ScriptManagerActivity::class.java)) }
         view.findViewById<LinearLayout>(R.id.menuSettings).setOnClickListener {
@@ -549,34 +613,120 @@ class BrowserActivity : AppCompatActivity() {
         Snackbar.make(binding.root, "已添加到主页", Snackbar.LENGTH_SHORT).show()
     }
 
+    /**
+     * 手动触发“保存此网站密码”：
+     * 1. 调用注入的 __naviExtractCredentials() JS 提取页面表单中的用户名/密码。
+     * 2. 弹出可编辑的保存对话框（预填提取到的值，用户可修改）。
+     * 3. 若页面没有密码框，对话框留空让用户手动填。
+     */
+    private fun manualSavePasswordForCurrentSite() {
+        val url = viewModel.currentUrl.value ?: return
+        if (url == "navi://home" || !url.startsWith("http")) {
+            Toast.makeText(this, "请先打开一个网页", Toast.LENGTH_SHORT).show()
+            return
+        }
+        val wv = webViewManager.getCurrentWebView() ?: return
+        wv.evaluateJavascript("(function(){try{return JSON.stringify(window.__naviExtractCredentials&&window.__naviExtractCredentials());}catch(e){return null;}})()") { result ->
+            val creds = parseExtractedCredentials(result)
+            val domain = UrlUtils.getDomain(url)
+            if (domain == null) {
+                Toast.makeText(this, "无法识别当前网站", Toast.LENGTH_SHORT).show()
+                return@evaluateJavascript
+            }
+            // 总是用可编辑对话框，让用户确认 / 修改后再保存
+            showManualAddPasswordDialog(domain, creds?.first ?: "", creds?.second ?: "")
+        }
+    }
+
+    /** 解析 __naviExtractCredentials() 返回的 JSON 字符串 */
+    private fun parseExtractedCredentials(result: String?): Pair<String, String>? {
+        if (result.isNullOrBlank() || result == "null") return null
+        val json = result.removeSurrounding("\"").replace("\\\"", "\"").replace("\\\\", "\\")
+        if (json.isBlank() || json == "null") return null
+        // 期望格式 {"username":"...","password":"..."}
+        val userRegex = Regex("\"username\"\\s*:\\s*\"((?:[^\"\\\\]|\\\\.)*)\"")
+        val pwdRegex = Regex("\"password\"\\s*:\\s*\"((?:[^\"\\\\]|\\\\.)*)\"")
+        val u = userRegex.find(json)?.groupValues?.getOrNull(1)?.unescapeJson() ?: return null
+        val p = pwdRegex.find(json)?.groupValues?.getOrNull(1)?.unescapeJson() ?: return null
+        if (u.isBlank() && p.isBlank()) return null
+        return Pair(u, p)
+    }
+
+    private fun String.unescapeJson(): String =
+        replace("\\\"", "\"").replace("\\\\", "\\").replace("\\n", "\n").replace("\\r", "\r").replace("\\/", "/")
+
+    /** 手动添加密码对话框（无密码框的页面也允许保存） */
+    private fun showManualAddPasswordDialog(domain: String, username: String = "", password: String = "") {
+        com.navibrowser.ui.password.showPasswordDialog(
+            context = this,
+            title = getString(R.string.save_password_for_site),
+            initialDomain = domain,
+            initialUsername = username,
+            initialPassword = password
+        ) { d, u, p ->
+            viewModel.savePassword(d, u, p)
+            Snackbar.make(binding.root, "已保存", Snackbar.LENGTH_SHORT).show()
+            viewModel.refreshSavedCredentialForCurrentUrl()
+        }
+    }
+
     private fun showSavePasswordDialog(domain: String, username: String, password: String) {
         if (!viewModel.prefs.savePasswordPromptEnabled) return
-        AlertDialog.Builder(this)
+        if (isIncognito) return
+        // 同一组凭据已弹过 → 不再打扰
+        val key = Triple(domain, username, password)
+        if (key in promptedCredentials) return
+        // 当前域名用户已选“不保存” → 不再打扰
+        if (domain in dismissedDomains) return
+        promptedCredentials.add(key)
+
+        // 关闭上一个未处理的弹窗，避免堆叠
+        savePasswordDialog?.dismiss()
+        savePasswordDialog = AlertDialog.Builder(this)
             .setTitle("保存密码")
             .setMessage("是否保存 $domain 的登录凭据？\n账号：$username")
-            .setPositiveButton("保存") { _, _ -> viewModel.savePassword(domain, username, password) }
-            .setNegativeButton("不保存") { _, _ -> viewModel.dismissPasswordPrompt() }
+            .setPositiveButton("保存") { _, _ ->
+                viewModel.savePassword(domain, username, password)
+                Snackbar.make(binding.root, "已保存到密码管理器", Snackbar.LENGTH_SHORT)
+                    .setAction("管理") { startActivity(Intent(this, com.navibrowser.ui.password.PasswordManagerActivity::class.java)) }
+                    .show()
+                // 保存后立刻刷新填充按钮状态
+                viewModel.refreshSavedCredentialForCurrentUrl()
+            }
+            .setNegativeButton("不保存") { _, _ ->
+                viewModel.dismissPasswordPrompt()
+                dismissedDomains.add(domain)
+            }
+            .setNeutralButton("永不") { _, _ ->
+                viewModel.dismissPasswordPrompt()
+                dismissedDomains.add(domain)
+                promptedCredentials.clear()
+            }
+            .setOnDismissListener {
+                if (savePasswordDialog === it) savePasswordDialog = null
+            }
             .show()
     }
 
-    private fun showFillCredentialsSnackbar(domain: String, username: String, password: String) {
+    /** 当用户点击填充 FAB 时调用 */
+    private fun onFillFabClicked() {
+        val saved = viewModel.savedCredentialForSite.value ?: return
         val wv = webViewManager.getCurrentWebView() ?: return
-        Snackbar.make(binding.root, "此站点已保存密码 ($username)", Snackbar.LENGTH_INDEFINITE)
-            .setAction("填充") {
-                if (viewModel.prefs.passwordFillAuthEnabled) {
-                    BiometricAuthUtil.authenticate(this, "验证身份",
-                        "验证后才能填充密码",
-                        onSuccess = {
-                            wv.evaluateJavascript(buildAutofillJs(username, password), null)
-                            Snackbar.make(binding.root, "已填充", Snackbar.LENGTH_SHORT).show()
-                        }
-                    )
-                } else {
-                    wv.evaluateJavascript(buildAutofillJs(username, password), null)
-                    Snackbar.make(binding.root, "已填充", Snackbar.LENGTH_SHORT).show()
-                }
+        val doFill = { user: String, pwd: String ->
+            wv.evaluateJavascript(buildAutofillJs(user, pwd), null)
+            Snackbar.make(binding.root, "已填充 $user", Snackbar.LENGTH_SHORT).show()
+        }
+        lifecycleScope.launch {
+            val (user, pwd) = viewModel.decryptSaved(saved)
+            if (viewModel.prefs.passwordFillAuthEnabled) {
+                BiometricAuthUtil.authenticate(this@BrowserActivity, "验证身份",
+                    "验证后才能填充密码",
+                    onSuccess = { doFill(user, pwd) }
+                )
+            } else {
+                doFill(user, pwd)
             }
-            .show()
+        }
     }
 
     private fun startDownload(url: String, fileName: String, mimeType: String?) {

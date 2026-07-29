@@ -46,6 +46,10 @@ class BrowserViewModel(application: Application) : AndroidViewModel(application)
     private val _pendingCredentials = MutableLiveData<Triple<String, String, String>?>()
     val pendingCredentials: LiveData<Triple<String, String, String>?> = _pendingCredentials
 
+    /** 当前站点已保存的凭据，用于驱动“填充”按钮的显示。null 表示无可用凭据。 */
+    private val _savedCredentialForSite = MutableLiveData<SavedPassword?>(null)
+    val savedCredentialForSite: LiveData<SavedPassword?> = _savedCredentialForSite
+
     init {
         _selectedSearchEngine.value = prefs.selectedSearchEngineIndex
     }
@@ -100,7 +104,29 @@ class BrowserViewModel(application: Application) : AndroidViewModel(application)
 
     fun dismissPasswordPrompt() { _pendingCredentials.value = null }
 
+    /** 精确域名查询，用于“填充”等场景。 */
     suspend fun getPasswordForDomain(domain: String) = passwordRepo.getPassword(domain)
+
+    /**
+     * 查询当前 URL 是否有匹配的已保存凭据。
+     * 支持子域名匹配：保存 example.com 的密码，访问 login.example.com 时也能匹配。
+     * 结果会更新 [savedCredentialForSite] LiveData，供 UI 显示填充按钮。
+     */
+    fun refreshSavedCredentialForCurrentUrl() {
+        val url = _currentUrl.value ?: return
+        val host = com.navibrowser.util.UrlUtils.getDomain(url) ?: run {
+            _savedCredentialForSite.value = null
+            return
+        }
+        viewModelScope.launch {
+            val saved = passwordRepo.findMatching(host)
+            _savedCredentialForSite.value = saved
+        }
+    }
+
+    /** 解密一条已保存密码，返回 (username, password) */
+    suspend fun decryptSaved(saved: SavedPassword): Pair<String, String> =
+        Pair(saved.username, com.navibrowser.security.CryptoManager.decrypt(saved.encryptedPassword))
 
     fun addShortcut(title: String, url: String) {
         viewModelScope.launch { browserRepo.addShortcut(title, url) }

@@ -68,6 +68,29 @@ class PasswordRepository(private val passwordDao: PasswordDao) {
         return Pair(saved.username, CryptoManager.decrypt(saved.encryptedPassword))
     }
 
+    /**
+     * 按域名匹配已保存密码，支持子域名：
+     * - 精确匹配 host
+     * - host 的父域名匹配（如保存 example.com，访问 login.example.com 也能命中）
+     * - 保存的域名是 host 的父域名（即 host 以 ".<saved>" 结尾）
+     * 多条命中时优先取 updatedAt 最新的一条。
+     */
+    suspend fun findMatching(host: String): SavedPassword? {
+        if (host.isBlank()) return null
+        // 1. 精确命中
+        passwordDao.findByDomain(host)?.let { return it }
+        // 2. 取所有保存密码，做子域名匹配
+        val all = passwordDao.getAllOnce()
+        if (all.isEmpty()) return null
+        val candidates = all.filter { saved ->
+            val d = saved.domain
+            if (d.isBlank()) false
+            else if (d == host) true
+            else host.endsWith(".$d", ignoreCase = true) || d.endsWith(".$host", ignoreCase = true)
+        }
+        return candidates.maxByOrNull { it.updatedAt }
+    }
+
     suspend fun deletePassword(id: Long) = passwordDao.deleteById(id)
 
     suspend fun deleteAll() = passwordDao.clearAll()
