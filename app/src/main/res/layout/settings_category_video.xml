@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="@string/category_video" android:textSize="20sp"
+        android:textColor="@color/textPrimary" android:textStyle="bold"
+        android:paddingLeft="20dp" android:paddingRight="20dp"
+        android:paddingTop="16dp" android:paddingBottom="16dp"/>
+
+    <LinearLayout style="@style/SettingsRow">
+        <TextView style="@style/SettingsRowTitle" android:text="启用视频嗅探"/>
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchVideoSniffer"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+    <LinearLayout android:id="@+id/rowExternalPlayer" style="@style/SettingsRow.Clickable">
+        <TextView style="@style/SettingsRowTitle" android:text="外部视频播放器"/>
+        <TextView android:id="@+id/tvExternalPlayer" style="@style/SettingsRowValue"/>
+    </LinearLayout>
+
+</LinearLayout>

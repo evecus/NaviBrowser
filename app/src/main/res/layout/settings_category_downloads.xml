@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="@string/category_downloads" android:textSize="20sp"
+        android:textColor="@color/textPrimary" android:textStyle="bold"
+        android:paddingLeft="20dp" android:paddingRight="20dp"
+        android:paddingTop="16dp" android:paddingBottom="16dp"/>
+
+    <LinearLayout android:id="@+id/rowDownloadDir" style="@style/SettingsRow.Clickable">
+        <LinearLayout style="@style/SettingsRowTextWrap">
+            <TextView style="@style/SettingsRowTitle" android:text="@string/download_dir"/>
+            <TextView android:id="@+id/tvDownloadDir" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:textSize="12sp"
+                android:textColor="@color/textSecondary" android:layout_marginTop="2dp"/>
+        </LinearLayout>
+        <TextView style="@style/SettingsRowAction" android:text="更改"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+    <LinearLayout style="@style/SettingsRow">
+        <TextView style="@style/SettingsRowTitle" android:text="@string/download_wifi_only"/>
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchWifiOnly"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+    <LinearLayout style="@style/SettingsRow">
+        <TextView style="@style/SettingsRowTitle" android:text="@string/ask_before_download"/>
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchAskDownload"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+
+    <LinearLayout android:id="@+id/rowDownloadCategories" style="@style/SettingsRow.Clickable">
+        <TextView style="@style/SettingsRowTitle" android:text="下载分类自定义"/>
+        <TextView style="@style/SettingsRowArrow" android:text="›"/>
+    </LinearLayout>
+
+</LinearLayout>

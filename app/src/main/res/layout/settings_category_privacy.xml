@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="@string/category_privacy" android:textSize="20sp"
+        android:textColor="@color/textPrimary" android:textStyle="bold"
+        android:paddingLeft="20dp" android:paddingRight="20dp"
+        android:paddingTop="16dp" android:paddingBottom="16dp"/>
+
+    <LinearLayout style="@style/SettingsRow">
+        <TextView style="@style/SettingsRowTitle" android:text="@string/save_password_prompt"/>
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchSavePassword"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+    <LinearLayout style="@style/SettingsRow">
+        <TextView style="@style/SettingsRowTitle" android:text="@string/ad_block"/>
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchAdBlock"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+    <LinearLayout android:id="@+id/rowAdBlockList" style="@style/SettingsRow.Clickable">
+        <TextView style="@style/SettingsRowTitle" android:text="广告拦截列表"/>
+        <TextView android:id="@+id/tvAdBlockList" style="@style/SettingsRowValue"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+    <LinearLayout style="@style/SettingsRow">
+        <TextView style="@style/SettingsRowTitle" android:text="@string/ignore_ssl_warnings"/>
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchIgnoreSsl"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+    <LinearLayout android:id="@+id/rowPasswordManager" style="@style/SettingsRow.Clickable">
+        <TextView style="@style/SettingsRowTitle" android:text="@string/password_manager"/>
+        <TextView style="@style/SettingsRowArrow" android:text="›"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+    <LinearLayout android:id="@+id/rowClearDataOnExit" style="@style/SettingsRow.Clickable">
+        <TextView style="@style/SettingsRowTitle" android:text="@string/clear_data_on_exit"/>
+        <TextView android:id="@+id/tvClearDataOnExit" style="@style/SettingsRowValue"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+    <LinearLayout android:id="@+id/rowClearDataNow" style="@style/SettingsRow.Clickable">
+        <TextView style="@style/SettingsRowTitle" android:text="@string/clear_data_now" android:textColor="@color/danger"/>
+        <TextView style="@style/SettingsRowArrow" android:text="›"/>
+    </LinearLayout>
+
+</LinearLayout>

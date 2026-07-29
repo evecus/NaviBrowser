@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="8dp"
+    android:paddingBottom="16dp">
+
+    <!-- 快捷操作行 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="8dp">
+
+        <LinearLayout android:id="@+id/menuNewTab"
+            android:layout_width="0dp" android:layout_height="72dp" android:layout_weight="1"
+            android:orientation="vertical" android:gravity="center"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true" android:focusable="true">
+            <TextView android:text="＋" android:textSize="22sp" android:textColor="@color/accent"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <TextView android:text="新标签" android:textSize="12sp"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/menuIncognito"
+            android:layout_width="0dp" android:layout_height="72dp" android:layout_weight="1"
+            android:orientation="vertical" android:gravity="center"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true" android:focusable="true">
+            <TextView android:text="🕵️" android:textSize="22sp"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <TextView android:text="无痕" android:textSize="12sp"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/menuDesktopMode"
+            android:layout_width="0dp" android:layout_height="72dp" android:layout_weight="1"
+            android:orientation="vertical" android:gravity="center"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true" android:focusable="true">
+            <TextView android:text="🖥" android:textSize="22sp"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <TextView android:text="桌面模式" android:textSize="11sp"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/menuShare"
+            android:layout_width="0dp" android:layout_height="72dp" android:layout_weight="1"
+            android:orientation="vertical" android:gravity="center"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true" android:focusable="true">
+            <TextView android:text="↗" android:textSize="22sp" android:textColor="@color/accent"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            <TextView android:text="分享" android:textSize="12sp"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View android:layout_width="match_parent" android:layout_height="1dp"
+        android:background="@color/divider" android:layout_marginBottom="4dp"/>
+
+    <!-- 列表行 -->
+    <LinearLayout android:id="@+id/menuBookmarks"
+        android:layout_width="match_parent" android:layout_height="52dp"
+        android:orientation="horizontal" android:gravity="center_vertical"
+        android:paddingLeft="20dp" android:paddingRight="20dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true" android:focusable="true">
+        <TextView android:text="🔖  " android:textSize="18sp"
+            android:layout_width="40dp" android:layout_height="wrap_content"/>
+        <TextView android:text="书签" android:textSize="15sp"
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/menuHistory"
+        android:layout_width="match_parent" android:layout_height="52dp"
+        android:orientation="horizontal" android:gravity="center_vertical"
+        android:paddingLeft="20dp" android:paddingRight="20dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true" android:focusable="true">
+        <TextView android:text="🕐  " android:textSize="18sp"
+            android:layout_width="40dp" android:layout_height="wrap_content"/>
+        <TextView android:text="历史记录" android:textSize="15sp"
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/menuDownloads"
+        android:layout_width="match_parent" android:layout_height="52dp"
+        android:orientation="horizontal" android:gravity="center_vertical"
+        android:paddingLeft="20dp" android:paddingRight="20dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true" android:focusable="true">
+        <TextView android:text="⬇  " android:textSize="18sp"
+            android:layout_width="40dp" android:layout_height="wrap_content"/>
+        <TextView android:text="下载管理" android:textSize="15sp"
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/menuReadAloud"
+        android:layout_width="match_parent" android:layout_height="52dp"
+        android:orientation="horizontal" android:gravity="center_vertical"
+        android:paddingLeft="20dp" android:paddingRight="20dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true" android:focusable="true">
+        <TextView android:text="🔊  " android:textSize="18sp"
+            android:layout_width="40dp" android:layout_height="wrap_content"/>
+        <TextView android:text="朗读页面" android:textSize="15sp"
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/menuVideoSniffer"
+        android:layout_width="match_parent" android:layout_height="52dp"
+        android:orientation="horizontal" android:gravity="center_vertical"
+        android:paddingLeft="20dp" android:paddingRight="20dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true" android:focusable="true">
+        <TextView android:text="▶  " android:textSize="18sp" android:textColor="@color/accent"
+            android:layout_width="40dp" android:layout_height="wrap_content"/>
+        <TextView android:text="视频嗅探" android:textSize="15sp"
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/menuFind"
+        android:layout_width="match_parent" android:layout_height="52dp"
+        android:orientation="horizontal" android:gravity="center_vertical"
+        android:paddingLeft="20dp" android:paddingRight="20dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true" android:focusable="true">
+        <TextView android:text="🔍  " android:textSize="18sp"
+            android:layout_width="40dp" android:layout_height="wrap_content"/>
+        <TextView android:text="页内查找" android:textSize="15sp"
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/menuUserscripts"
+        android:layout_width="match_parent" android:layout_height="52dp"
+        android:orientation="horizontal" android:gravity="center_vertical"
+        android:paddingLeft="20dp" android:paddingRight="20dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true" android:focusable="true">
+        <TextView android:text="🧩  " android:textSize="18sp"
+            android:layout_width="40dp" android:layout_height="wrap_content"/>
+        <TextView android:text="油猴脚本" android:textSize="15sp"
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/menuAddShortcut"
+        android:layout_width="match_parent" android:layout_height="52dp"
+        android:orientation="horizontal" android:gravity="center_vertical"
+        android:paddingLeft="20dp" android:paddingRight="20dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true" android:focusable="true">
+        <TextView android:text="📌  " android:textSize="18sp"
+            android:layout_width="40dp" android:layout_height="wrap_content"/>
+        <TextView android:text="添加到主页" android:textSize="15sp"
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/menuSettings"
+        android:layout_width="match_parent" android:layout_height="52dp"
+        android:orientation="horizontal" android:gravity="center_vertical"
+        android:paddingLeft="20dp" android:paddingRight="20dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true" android:focusable="true">
+        <TextView android:text="⚙  " android:textSize="18sp"
+            android:layout_width="40dp" android:layout_height="wrap_content"/>
+        <TextView android:text="设置" android:textSize="15sp"
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="@string/category_web" android:textSize="20sp"
+        android:textColor="@color/textPrimary" android:textStyle="bold"
+        android:paddingLeft="20dp" android:paddingRight="20dp"
+        android:paddingTop="16dp" android:paddingBottom="16dp"/>
+
+    <LinearLayout style="@style/SettingsRow">
+        <TextView style="@style/SettingsRowTitle" android:text="@string/javascript"/>
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchJavascript"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+    <LinearLayout style="@style/SettingsRow">
+        <TextView style="@style/SettingsRowTitle" android:text="@string/show_images"/>
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchImages"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+    <LinearLayout style="@style/SettingsRow">
+        <TextView style="@style/SettingsRowTitle" android:text="@string/cookies"/>
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchCookies"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+    <LinearLayout style="@style/SettingsRow">
+        <TextView style="@style/SettingsRowTitle" android:text="@string/block_3rd_cookies"/>
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchBlock3rdCookies"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+    <LinearLayout style="@style/SettingsRow">
+        <TextView style="@style/SettingsRowTitle" android:text="@string/block_popups"/>
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchBlockPopups"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+    <LinearLayout style="@style/SettingsRow">
+        <TextView style="@style/SettingsRowTitle" android:text="@string/do_not_track"/>
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchDoNotTrack"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+    <LinearLayout style="@style/SettingsRow">
+        <TextView style="@style/SettingsRowTitle" android:text="@string/location_access"/>
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchLocation"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+    <LinearLayout style="@style/SettingsRow">
+        <TextView style="@style/SettingsRowTitle" android:text="@string/request_desktop"/>
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchRequestDesktop"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+    <LinearLayout android:id="@+id/rowUserAgent" style="@style/SettingsRow.Clickable">
+        <TextView style="@style/SettingsRowTitle" android:text="@string/user_agent"/>
+        <TextView android:id="@+id/tvUserAgent" style="@style/SettingsRowValue"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+    <LinearLayout android:id="@+id/rowCustomUa" style="@style/SettingsRow.Clickable">
+        <TextView style="@style/SettingsRowTitle" android:text="@string/custom_ua"/>
+        <TextView android:id="@+id/tvCustomUa" style="@style/SettingsRowValue"/>
+    </LinearLayout>
+
+</LinearLayout>
