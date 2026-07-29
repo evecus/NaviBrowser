@@ -60,6 +60,9 @@
     <string name="copy_username">复制账号</string>
     <string name="copy_password">复制密码</string>
     <string name="no_passwords_saved">暂无保存的密码</string>
+    <string name="fill_password">填充密码</string>
+    <string name="save_password_for_site">保存此网站密码</string>
+    <string name="password_manager_entry">密码管理器</string>
 
     <!-- 新增 -->
     <string name="desktop_mode">桌面模式</string>
