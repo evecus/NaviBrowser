@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="@string/category_home" android:textSize="20sp"
+        android:textColor="@color/textPrimary" android:textStyle="bold"
+        android:paddingLeft="20dp" android:paddingRight="20dp"
+        android:paddingTop="16dp" android:paddingBottom="16dp"/>
+
+    <LinearLayout android:id="@+id/rowHomePage" style="@style/SettingsRow.Clickable">
+        <TextView style="@style/SettingsRowTitle" android:text="@string/home_page"/>
+        <TextView android:id="@+id/tvHomePage" style="@style/SettingsRowValue"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+    <LinearLayout android:id="@+id/rowNewTabBehavior" style="@style/SettingsRow.Clickable">
+        <TextView style="@style/SettingsRowTitle" android:text="@string/new_tab_behavior"/>
+        <TextView android:id="@+id/tvNewTabBehavior" style="@style/SettingsRowValue"/>
+    </LinearLayout>
+
+</LinearLayout>

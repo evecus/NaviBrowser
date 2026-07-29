@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="脚本名称" android:textSize="14sp" android:textColor="@color/textSecondary"
+            android:paddingBottom="4dp" />
+
+        <EditText android:id="@+id/etScriptName"
+            android:layout_width="match_parent" android:layout_height="48dp"
+            android:hint="例如: 百度去广告" android:singleLine="true"
+            android:background="@drawable/bg_search_engine_chip" />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="匹配网址 (逗号分隔)" android:textSize="14sp"
+            android:textColor="@color/textSecondary"
+            android:paddingTop="16dp" android:paddingBottom="4dp" />
+
+        <EditText android:id="@+id/etScriptMatch"
+            android:layout_width="match_parent" android:layout_height="48dp"
+            android:hint="*://*.example.com/*" android:singleLine="true"
+            android:background="@drawable/bg_search_engine_chip" />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="排除网址 (逗号分隔，可选)" android:textSize="14sp"
+            android:textColor="@color/textSecondary"
+            android:paddingTop="16dp" android:paddingBottom="4dp" />
+
+        <EditText android:id="@+id/etScriptExclude"
+            android:layout_width="match_parent" android:layout_height="48dp"
+            android:hint="*://*.example.com/exclude/*" android:singleLine="true"
+            android:background="@drawable/bg_search_engine_chip" />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="JavaScript 代码" android:textSize="14sp"
+            android:textColor="@color/textSecondary"
+            android:paddingTop="16dp" android:paddingBottom="4dp" />
+
+        <EditText android:id="@+id/etScriptCode"
+            android:layout_width="match_parent" android:layout_height="300dp"
+            android:gravity="start|top"
+            android:hint="// 在此编写你的脚本..."
+            android:inputType="textMultiLine|textNoSuggestions"
+            android:background="@drawable/bg_search_engine_chip" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="@string/category_search" android:textSize="20sp"
+        android:textColor="@color/textPrimary" android:textStyle="bold"
+        android:paddingLeft="20dp" android:paddingRight="20dp"
+        android:paddingTop="16dp" android:paddingBottom="16dp"/>
+
+    <LinearLayout android:id="@+id/rowSearchEngine" style="@style/SettingsRow.Clickable">
+        <TextView style="@style/SettingsRowTitle" android:text="@string/default_search_engine"/>
+        <TextView android:id="@+id/tvSearchEngine" style="@style/SettingsRowValue"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+
+    <LinearLayout android:id="@+id/rowCustomSearchUrl" style="@style/SettingsRow.Clickable">
+        <TextView style="@style/SettingsRowTitle" android:text="@string/custom_search_url"/>
+        <TextView android:id="@+id/tvCustomSearchUrl" style="@style/SettingsRowValue"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+
+    <LinearLayout style="@style/SettingsRow">
+        <TextView style="@style/SettingsRowTitle" android:text="@string/search_suggestions"/>
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchSearchSuggestions"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</LinearLayout>

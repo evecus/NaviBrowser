@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tvSearchEngine"
+    android:layout_width="wrap_content"
+    android:layout_height="32dp"
+    android:gravity="center"
+    android:paddingHorizontal="14dp"
+    android:textSize="13sp"
+    android:textColor="@color/textSecondary"
+    android:background="@drawable/bg_search_engine_chip"
+    android:layout_marginHorizontal="3dp" />

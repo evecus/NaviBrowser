@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="@string/category_gesture" android:textSize="20sp"
+        android:textColor="@color/textPrimary" android:textStyle="bold"
+        android:paddingLeft="20dp" android:paddingRight="20dp"
+        android:paddingTop="16dp" android:paddingBottom="16dp"/>
+
+    <LinearLayout android:id="@+id/rowGestureLeft" style="@style/SettingsRow.Clickable">
+        <TextView style="@style/SettingsRowTitle" android:text="← 左划"/>
+        <TextView android:id="@+id/tvGestureLeft" style="@style/SettingsRowValue"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+    <LinearLayout android:id="@+id/rowGestureRight" style="@style/SettingsRow.Clickable">
+        <TextView style="@style/SettingsRowTitle" android:text="→ 右划"/>
+        <TextView android:id="@+id/tvGestureRight" style="@style/SettingsRowValue"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+    <LinearLayout android:id="@+id/rowGestureUp" style="@style/SettingsRow.Clickable">
+        <TextView style="@style/SettingsRowTitle" android:text="↑ 上划"/>
+        <TextView android:id="@+id/tvGestureUp" style="@style/SettingsRowValue"/>
+    </LinearLayout>
+    <include layout="@layout/item_divider"/>
+    <LinearLayout android:id="@+id/rowGestureDown" style="@style/SettingsRow.Clickable">
+        <TextView style="@style/SettingsRowTitle" android:text="↓ 下划"/>
+        <TextView android:id="@+id/tvGestureDown" style="@style/SettingsRowValue"/>
+    </LinearLayout>
+
+</LinearLayout>

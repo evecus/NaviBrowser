@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NaviBrowser</string>
+    <string name="home">主页</string>
+    <string name="search_or_enter_url">搜索或输入网址</string>
+
+    <string name="settings_search">搜索</string>
+    <string name="settings_appearance">外观</string>
+    <string name="settings_web">网页</string>
+    <string name="settings_privacy">隐私与安全</string>
+    <string name="settings_data">数据</string>
+    <string name="settings_downloads">下载</string>
+    <string name="settings_reader">阅读模式</string>
+    <string name="settings_about">关于</string>
+
+    <string name="default_search_engine">默认搜索引擎</string>
+    <string name="custom_search_url">自定义搜索 URL</string>
+    <string name="search_suggestions">搜索建议</string>
+    <string name="new_tab_behavior">新标签页行为</string>
+    <string name="home_page">主页</string>
+    <string name="night_mode">夜间模式</string>
+    <string name="night_filter_strength">夜间滤镜强度</string>
+    <string name="hide_status_bar">隐藏状态栏</string>
+    <string name="screen_orientation">屏幕方向</string>
+    <string name="text_size">网页字号</string>
+    <string name="accent_color">主题色</string>
+    <string name="volume_key_gestures">音量键快捷操作</string>
+    <string name="back_forward_gesture">前进/后退手势</string>
+    <string name="pull_to_refresh">下拉刷新</string>
+    <string name="javascript">启用 JavaScript</string>
+    <string name="show_images">显示图片</string>
+    <string name="cookies">启用 Cookie</string>
+    <string name="block_3rd_cookies">阻止第三方 Cookie</string>
+    <string name="block_popups">拦截弹窗</string>
+    <string name="do_not_track">请求 Do Not Track</string>
+    <string name="location_access">允许定位</string>
+    <string name="request_desktop">请求桌面版网页（全局）</string>
+    <string name="user_agent">浏览器标识 (UA)</string>
+    <string name="custom_ua">自定义 UA 字符串</string>
+    <string name="save_password_prompt">提示保存密码</string>
+    <string name="password_manager">密码管理器</string>
+    <string name="ad_block">内置广告拦截</string>
+    <string name="ignore_ssl_warnings">忽略 SSL 警告</string>
+    <string name="clear_data_on_exit">退出时清理数据</string>
+    <string name="clear_data_now">立即清理数据</string>
+    <string name="download_dir">下载保存目录</string>
+    <string name="download_wifi_only">仅在 Wi-Fi 下载</string>
+    <string name="ask_before_download">下载前询问</string>
+    <string name="reader_text_size">阅读字号</string>
+    <string name="reader_theme">阅读主题</string>
+    <string name="set_default_browser">设为默认浏览器</string>
+    <string name="clear_history">清除历史记录</string>
+    <string name="blocked_ads_count">已拦截广告</string>
+    <string name="saved_data">节省流量</string>
+    <string name="about_version">版本</string>
+    <string name="about_source">源代码</string>
+    <string name="add_password">添加密码</string>
+    <string name="edit_password">编辑密码</string>
+    <string name="search_passwords">搜索密码</string>
+    <string name="copy_username">复制账号</string>
+    <string name="copy_password">复制密码</string>
+    <string name="no_passwords_saved">暂无保存的密码</string>
+
+    <!-- 新增 -->
+    <string name="desktop_mode">桌面模式</string>
+    <string name="read_aloud">朗读页面</string>
+    <string name="read_aloud_speed">朗读速度</string>
+    <string name="video_sniffer">视频嗅探</string>
+    <string name="video_sniffer_enabled">启用视频嗅探</string>
+    <string name="external_player">外部视频播放器</string>
+    <string name="gesture_left">左划手势</string>
+    <string name="gesture_right">右划手势</string>
+    <string name="gesture_up">上划手势</string>
+    <string name="gesture_down">下划手势</string>
+    <string name="find_in_page">页内查找</string>
+    <string name="share_page">分享页面</string>
+
+    <!-- 设置分类名称 -->
+    <string name="category_search">搜索</string>
+    <string name="category_appearance">外观</string>
+    <string name="category_gesture">手势</string>
+    <string name="category_web">网页设置</string>
+    <string name="category_privacy">隐私与安全</string>
+    <string name="category_home">主页与新标签页</string>
+    <string name="category_downloads">下载</string>
+    <string name="category_reader">阅读模式</string>
+    <string name="category_video">视频嗅探</string>
+    <string name="category_readaloud">朗读模式</string>
+    <string name="category_scripts">油猴脚本</string>
+    <string name="category_data">数据管理</string>
+    <string name="category_about">关于</string>
+</resources>
