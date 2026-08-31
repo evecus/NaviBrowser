@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="12dp"
+    android:paddingBottom="8dp">
+
+    <!-- Card: 密码 -->
+    <TextView style="@style/SettingsSectionHeader" android:text="密码"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/bg_settings_card"
+        android:elevation="1dp">
+
+        <LinearLayout style="@style/SettingsRow">
+            <TextView style="@style/SettingsRowTitle" android:text="@string/save_password_prompt"/>
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchSavePassword"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <include layout="@layout/item_divider"/>
+        <LinearLayout style="@style/SettingsRow">
+            <TextView style="@style/SettingsRowTitle" android:text="密码变更时提示更新"/>
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchUpdatePassword"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <include layout="@layout/item_divider"/>
+        <LinearLayout style="@style/SettingsRow">
+            <TextView style="@style/SettingsRowTitle" android:text="页面加载后自动填充"/>
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchAutoFillOnLoad"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <include layout="@layout/item_divider"/>
+        <LinearLayout android:id="@+id/rowPasswordManager" style="@style/SettingsRow.Clickable">
+            <TextView style="@style/SettingsRowTitle" android:text="@string/password_manager"/>
+            <TextView style="@style/SettingsRowArrow" android:text="›"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Card: 广告与安全 -->
+    <TextView style="@style/SettingsSectionHeader" android:text="广告与安全"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/bg_settings_card"
+        android:elevation="1dp">
+
+        <LinearLayout style="@style/SettingsRow">
+            <TextView style="@style/SettingsRowTitle" android:text="@string/ad_block"/>
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchAdBlock"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <include layout="@layout/item_divider"/>
+        <LinearLayout android:id="@+id/rowAdBlockList" style="@style/SettingsRow.Clickable">
+            <TextView style="@style/SettingsRowTitle" android:text="广告拦截列表"/>
+            <TextView android:id="@+id/tvAdBlockList" style="@style/SettingsRowValue"/>
+        </LinearLayout>
+        <include layout="@layout/item_divider"/>
+        <LinearLayout style="@style/SettingsRow">
+            <TextView style="@style/SettingsRowTitle" android:text="@string/ignore_ssl_warnings"/>
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchIgnoreSsl"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Card: 数据清理 -->
+    <TextView style="@style/SettingsSectionHeader" android:text="数据清理"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/bg_settings_card"
+        android:elevation="1dp">
+
+        <LinearLayout android:id="@+id/rowClearDataOnExit" style="@style/SettingsRow.Clickable">
+            <TextView style="@style/SettingsRowTitle" android:text="@string/clear_data_on_exit"/>
+            <TextView android:id="@+id/tvClearDataOnExit" style="@style/SettingsRowValue"/>
+        </LinearLayout>
+        <include layout="@layout/item_divider"/>
+        <LinearLayout android:id="@+id/rowClearDataNow" style="@style/SettingsRow.Clickable">
+            <TextView style="@style/SettingsRowTitle" android:text="@string/clear_data_now"
+                android:textColor="@color/danger"/>
+            <TextView style="@style/SettingsRowArrow" android:text="›"
+                android:textColor="@color/danger"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

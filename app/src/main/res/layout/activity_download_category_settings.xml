@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="8dp"
+        android:paddingBottom="32dp">
+
+        <TextView
+            android:id="@+id/tvSectionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="分类列表（可按需编辑后缀和排序）"
+            android:textSize="13sp"
+            android:textColor="@color/textSecondary"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp" />
+
+        <LinearLayout
+            android:id="@+id/categoryListContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <include layout="@layout/item_divider" />
+
+        <LinearLayout
+            android:id="@+id/btnResetDefaults"
+            style="@style/SettingsRow.Clickable"
+            android:gravity="center"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp">
+            <TextView
+                style="@style/SettingsRowTitle"
+                android:gravity="center"
+                android:textColor="@color/danger"
+                android:text="恢复默认分类" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

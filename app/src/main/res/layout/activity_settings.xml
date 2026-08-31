@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="8dp"
+        android:paddingBottom="24dp">
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="设置"
+            android:textSize="22sp"
+            android:textColor="@color/textPrimary"
+            android:letterSpacing="0.02"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="4dp" />
+
+        <!-- Card: 浏览 -->
+        <TextView style="@style/SettingsSectionHeader" android:text="浏览" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/bg_settings_card"
+            android:clipToPadding="false"
+            android:elevation="1dp">
+
+            <LinearLayout android:id="@+id/rowCategorySearch" style="@style/SettingsRow.Clickable">
+                <TextView style="@style/SettingsRowTitle" android:text="@string/category_search" />
+                <TextView style="@style/SettingsRowArrow" android:text="›" />
+            </LinearLayout>
+            <include layout="@layout/item_divider" />
+            <LinearLayout android:id="@+id/rowCategoryAppearance" style="@style/SettingsRow.Clickable">
+                <TextView style="@style/SettingsRowTitle" android:text="@string/category_appearance" />
+                <TextView style="@style/SettingsRowArrow" android:text="›" />
+            </LinearLayout>
+            <include layout="@layout/item_divider" />
+            <LinearLayout android:id="@+id/rowCategoryGesture" style="@style/SettingsRow.Clickable">
+                <TextView style="@style/SettingsRowTitle" android:text="@string/category_gesture" />
+                <TextView style="@style/SettingsRowArrow" android:text="›" />
+            </LinearLayout>
+            <include layout="@layout/item_divider" />
+            <LinearLayout android:id="@+id/rowCategoryHome" style="@style/SettingsRow.Clickable">
+                <TextView style="@style/SettingsRowTitle" android:text="@string/category_home" />
+                <TextView style="@style/SettingsRowArrow" android:text="›" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Card: 网页 -->
+        <TextView style="@style/SettingsSectionHeader" android:text="网页" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/bg_settings_card"
+            android:clipToPadding="false"
+            android:elevation="1dp">
+
+            <LinearLayout android:id="@+id/rowCategoryWeb" style="@style/SettingsRow.Clickable">
+                <TextView style="@style/SettingsRowTitle" android:text="@string/category_web" />
+                <TextView style="@style/SettingsRowArrow" android:text="›" />
+            </LinearLayout>
+            <include layout="@layout/item_divider" />
+            <LinearLayout android:id="@+id/rowCategoryPrivacy" style="@style/SettingsRow.Clickable">
+                <TextView style="@style/SettingsRowTitle" android:text="@string/category_privacy" />
+                <TextView style="@style/SettingsRowArrow" android:text="›" />
+            </LinearLayout>
+            <include layout="@layout/item_divider" />
+            <LinearLayout android:id="@+id/rowCategoryDownloads" style="@style/SettingsRow.Clickable">
+                <TextView style="@style/SettingsRowTitle" android:text="@string/category_downloads" />
+                <TextView style="@style/SettingsRowArrow" android:text="›" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Card: 扩展 -->
+        <TextView style="@style/SettingsSectionHeader" android:text="扩展" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/bg_settings_card"
+            android:clipToPadding="false"
+            android:elevation="1dp">
+
+            <LinearLayout android:id="@+id/rowCategoryReader" style="@style/SettingsRow.Clickable">
+                <TextView style="@style/SettingsRowTitle" android:text="@string/category_reader" />
+                <TextView style="@style/SettingsRowArrow" android:text="›" />
+            </LinearLayout>
+            <include layout="@layout/item_divider" />
+            <LinearLayout android:id="@+id/rowCategoryVideo" style="@style/SettingsRow.Clickable">
+                <TextView style="@style/SettingsRowTitle" android:text="@string/category_video" />
+                <TextView style="@style/SettingsRowArrow" android:text="›" />
+            </LinearLayout>
+            <include layout="@layout/item_divider" />
+            <LinearLayout android:id="@+id/rowCategoryReadAloud" style="@style/SettingsRow.Clickable">
+                <TextView style="@style/SettingsRowTitle" android:text="@string/category_readaloud" />
+                <TextView style="@style/SettingsRowArrow" android:text="›" />
+            </LinearLayout>
+            <include layout="@layout/item_divider" />
+            <LinearLayout android:id="@+id/rowCategoryQuickSwitch" style="@style/SettingsRow.Clickable">
+                <TextView style="@style/SettingsRowTitle" android:text="@string/category_quick_switch" />
+                <TextView style="@style/SettingsRowArrow" android:text="›" />
+            </LinearLayout>
+            <include layout="@layout/item_divider" />
+            <LinearLayout android:id="@+id/rowCategoryScripts" style="@style/SettingsRow.Clickable">
+                <TextView style="@style/SettingsRowTitle" android:text="@string/category_scripts" />
+                <TextView style="@style/SettingsRowArrow" android:text="›" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Card: 其他 -->
+        <TextView style="@style/SettingsSectionHeader" android:text="其他" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/bg_settings_card"
+            android:clipToPadding="false"
+            android:elevation="1dp">
+
+            <LinearLayout android:id="@+id/rowCategoryData" style="@style/SettingsRow.Clickable">
+                <TextView style="@style/SettingsRowTitle" android:text="@string/category_data" />
+                <TextView style="@style/SettingsRowArrow" android:text="›" />
+            </LinearLayout>
+            <include layout="@layout/item_divider" />
+            <LinearLayout android:id="@+id/rowCategoryAbout" style="@style/SettingsRow.Clickable">
+                <TextView style="@style/SettingsRowTitle" android:text="@string/category_about" />
+                <TextView style="@style/SettingsRowArrow" android:text="›" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

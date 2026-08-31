@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="8dp"
+    android:background="@color/surface">
+
+    <TextView
+        android:id="@+id/tvOrder"
+        android:layout_width="24dp"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/textSecondary"
+        android:gravity="center" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingLeft="8dp">
+
+        <TextView
+            android:id="@+id/tvCategoryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/textPrimary" />
+
+        <TextView
+            android:id="@+id/tvCategoryExts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/textSecondary"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/btnEditCategory"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/ic_edit"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:scaleType="centerInside"
+        android:contentDescription="编辑" />
+
+</LinearLayout>

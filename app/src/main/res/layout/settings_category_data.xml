@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="12dp"
+    android:paddingBottom="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/bg_settings_card"
+        android:elevation="1dp">
+
+        <LinearLayout android:id="@+id/rowDefaultBrowser" style="@style/SettingsRow.Clickable">
+            <TextView style="@style/SettingsRowTitle" android:text="@string/set_default_browser"/>
+            <TextView style="@style/SettingsRowArrow" android:text="›"/>
+        </LinearLayout>
+        <include layout="@layout/item_divider"/>
+        <LinearLayout android:id="@+id/rowClearHistory" style="@style/SettingsRow.Clickable">
+            <TextView style="@style/SettingsRowTitle" android:text="@string/clear_history"
+                android:textColor="@color/danger"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

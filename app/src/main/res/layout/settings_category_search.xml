@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="12dp"
+    android:paddingBottom="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/bg_settings_card"
+        android:elevation="1dp">
+
+        <LinearLayout android:id="@+id/rowSearchEngine" style="@style/SettingsRow.Clickable">
+            <TextView style="@style/SettingsRowTitle" android:text="@string/default_search_engine"/>
+            <TextView android:id="@+id/tvSearchEngine" style="@style/SettingsRowValue"/>
+        </LinearLayout>
+        <include layout="@layout/item_divider"/>
+        <LinearLayout style="@style/SettingsRow">
+            <TextView style="@style/SettingsRowTitle" android:text="@string/search_suggestions"/>
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchSearchSuggestions"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView style="@style/SettingsSectionHeader" android:text="搜索引擎列表"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/bg_settings_card"
+        android:elevation="1dp">
+
+        <LinearLayout
+            android:id="@+id/engineListContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <LinearLayout android:id="@+id/btnAddEngine" style="@style/SettingsRow.Clickable"
+            android:gravity="center">
+            <TextView style="@style/SettingsRowTitle" android:gravity="center"
+                android:text="＋ 添加搜索引擎" android:textColor="@color/accent"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

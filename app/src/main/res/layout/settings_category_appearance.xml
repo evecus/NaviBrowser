@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="4dp"
+    android:paddingBottom="8dp">
+
+    <!-- Card: 显示 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_settings_card"
+        android:elevation="1dp">
+
+        <LinearLayout android:id="@+id/rowNightMode" style="@style/SettingsRow.Clickable">
+            <TextView style="@style/SettingsRowTitle" android:text="@string/night_mode"/>
+            <TextView android:id="@+id/tvNightMode" style="@style/SettingsRowValue"/>
+        </LinearLayout>
+        <include layout="@layout/item_divider"/>
+        <LinearLayout android:id="@+id/rowNightFilter" style="@style/SettingsRow.Clickable">
+            <TextView style="@style/SettingsRowTitle" android:text="@string/night_filter_strength"/>
+            <TextView android:id="@+id/tvNightFilter" style="@style/SettingsRowValue"/>
+        </LinearLayout>
+        <include layout="@layout/item_divider"/>
+        <LinearLayout android:id="@+id/rowAccentColor" style="@style/SettingsRow.Clickable">
+            <TextView style="@style/SettingsRowTitle" android:text="@string/accent_color"/>
+            <View android:id="@+id/vAccentSwatch" android:layout_width="22dp"
+                android:layout_height="22dp" android:background="@color/accent"/>
+        </LinearLayout>
+        <include layout="@layout/item_divider"/>
+        <LinearLayout android:id="@+id/rowTextSize" style="@style/SettingsRow.Clickable">
+            <TextView style="@style/SettingsRowTitle" android:text="@string/text_size"/>
+            <TextView android:id="@+id/tvTextSize" style="@style/SettingsRowValue"/>
+        </LinearLayout>
+        <include layout="@layout/item_divider"/>
+        <LinearLayout android:id="@+id/rowScreenOrientation" style="@style/SettingsRow.Clickable">
+            <TextView style="@style/SettingsRowTitle" android:text="@string/screen_orientation"/>
+            <TextView android:id="@+id/tvScreenOrientation" style="@style/SettingsRowValue"/>
+        </LinearLayout>
+        <include layout="@layout/item_divider"/>
+        <LinearLayout style="@style/SettingsRow">
+            <TextView style="@style/SettingsRowTitle" android:text="@string/hide_status_bar"/>
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchHideStatusBar"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Card: 手势 -->
+    <TextView style="@style/SettingsSectionHeader" android:text="手势与按键"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/bg_settings_card"
+        android:elevation="1dp">
+
+        <LinearLayout style="@style/SettingsRow">
+            <TextView style="@style/SettingsRowTitle" android:text="@string/volume_key_gestures"/>
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchVolumeKeys"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <include layout="@layout/item_divider"/>
+        <LinearLayout style="@style/SettingsRow">
+            <TextView style="@style/SettingsRowTitle" android:text="@string/back_forward_gesture"/>
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchBackForwardGesture"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <include layout="@layout/item_divider"/>
+        <LinearLayout style="@style/SettingsRow">
+            <TextView style="@style/SettingsRowTitle" android:text="@string/pull_to_refresh"/>
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchPullToRefresh"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_bottom_sheet"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <!-- Grab handle -->
+    <View
+        android:layout_width="36dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bg_grab_handle" />
+
+    <!-- 快捷操作行 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="4dp">
+
+        <LinearLayout android:id="@+id/menuNewTab"
+            style="@style/MenuTile">
+            <ImageView style="@style/MenuTileIcon"
+                android:src="@drawable/ic_add"
+                android:background="@drawable/bg_menu_tile_icon"
+                android:padding="6dp"
+                android:tint="@color/accent" />
+            <TextView style="@style/MenuTileLabel" android:text="新标签" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/menuIncognito"
+            style="@style/MenuTile">
+            <ImageView style="@style/MenuTileIcon"
+                android:src="@drawable/ic_incognito_filled"
+                android:background="@drawable/bg_menu_tile_icon"
+                android:padding="6dp" />
+            <TextView style="@style/MenuTileLabel" android:text="无痕" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/menuDesktopMode"
+            style="@style/MenuTile">
+            <ImageView style="@style/MenuTileIcon"
+                android:src="@drawable/ic_desktop"
+                android:background="@drawable/bg_menu_tile_icon"
+                android:padding="6dp" />
+            <TextView style="@style/MenuTileLabel" android:text="桌面模式" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/menuShare"
+            style="@style/MenuTile">
+            <ImageView style="@style/MenuTileIcon"
+                android:src="@drawable/ic_share"
+                android:background="@drawable/bg_menu_tile_icon"
+                android:padding="6dp" />
+            <TextView style="@style/MenuTileLabel" android:text="分享" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View android:layout_width="match_parent" android:layout_height="1dp"
+        android:background="@color/divider_light"
+        android:layout_marginTop="4dp" android:layout_marginBottom="4dp"
+        android:layout_marginStart="20dp" android:layout_marginEnd="20dp"/>
+
+    <!-- 列表行 -->
+    <LinearLayout android:id="@+id/menuBookmarks" style="@style/MenuListRow">
+        <ImageView style="@style/MenuListIcon" android:src="@drawable/ic_bookmark_outline" />
+        <TextView style="@style/MenuListLabel" android:text="书签" />
+        <TextView style="@style/SettingsRowArrow" android:text="›" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/menuHistory" style="@style/MenuListRow">
+        <ImageView style="@style/MenuListIcon" android:src="@drawable/ic_history" />
+        <TextView style="@style/MenuListLabel" android:text="历史记录" />
+        <TextView style="@style/SettingsRowArrow" android:text="›" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/menuDownloads" style="@style/MenuListRow">
+        <ImageView style="@style/MenuListIcon" android:src="@drawable/ic_download" />
+        <TextView style="@style/MenuListLabel" android:text="下载管理" />
+        <TextView style="@style/SettingsRowArrow" android:text="›" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/menuReadAloud" style="@style/MenuListRow">
+        <ImageView style="@style/MenuListIcon" android:src="@drawable/ic_volume" />
+        <TextView style="@style/MenuListLabel" android:text="朗读页面" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/menuVideoSniffer" style="@style/MenuListRow">
+        <ImageView style="@style/MenuListIcon" android:src="@drawable/ic_video"
+            android:tint="@color/accent" />
+        <TextView style="@style/MenuListLabel" android:text="视频嗅探" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/menuFind" style="@style/MenuListRow">
+        <ImageView style="@style/MenuListIcon" android:src="@drawable/ic_find_in_page" />
+        <TextView style="@style/MenuListLabel" android:text="页内查找" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/menuUserscripts" style="@style/MenuListRow">
+        <ImageView style="@style/MenuListIcon" android:src="@drawable/ic_extension" />
+        <TextView style="@style/MenuListLabel" android:text="油猴脚本" />
+        <TextView style="@style/SettingsRowArrow" android:text="›" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/menuAddShortcut" style="@style/MenuListRow">
+        <ImageView style="@style/MenuListIcon" android:src="@drawable/ic_pin" />
+        <TextView style="@style/MenuListLabel" android:text="添加到主页" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/menuSavePassword" style="@style/MenuListRow">
+        <ImageView style="@style/MenuListIcon" android:src="@drawable/ic_key" />
+        <TextView style="@style/MenuListLabel" android:text="@string/save_password_for_site" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/menuPasswordManager" style="@style/MenuListRow">
+        <ImageView style="@style/MenuListIcon" android:src="@drawable/ic_lock" />
+        <TextView style="@style/MenuListLabel" android:text="@string/password_manager_entry" />
+        <TextView style="@style/SettingsRowArrow" android:text="›" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/menuSettings" style="@style/MenuListRow">
+        <ImageView style="@style/MenuListIcon" android:src="@drawable/ic_settings_gear" />
+        <TextView style="@style/MenuListLabel" android:text="设置" />
+        <TextView style="@style/SettingsRowArrow" android:text="›" />
+    </LinearLayout>
+
+</LinearLayout>

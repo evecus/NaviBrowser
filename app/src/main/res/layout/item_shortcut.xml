@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="8dp"
+    android:background="?attr/selectableItemBackgroundBorderless">
+
+    <ImageView
+        android:id="@+id/ivShortcutIcon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_shortcut_icon"
+        android:padding="6dp"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/tvShortcutTitle"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:textSize="11sp"
+        android:textColor="@color/textSecondary"
+        android:maxLines="2"
+        android:ellipsize="end" />
+
+</LinearLayout>

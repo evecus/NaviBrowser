@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="8dp"
+    android:background="@color/surface">
+
+    <TextView
+        android:id="@+id/tvOrder"
+        android:layout_width="24dp"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/textSecondary"
+        android:gravity="center" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingLeft="8dp">
+
+        <TextView
+            android:id="@+id/tvEngineName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/textPrimary" />
+
+        <TextView
+            android:id="@+id/tvEngineHost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/textSecondary"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/btnMoveUp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/ic_arrow_up"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:scaleType="centerInside"
+        android:contentDescription="上移" />
+
+    <ImageButton
+        android:id="@+id/btnMoveDown"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/ic_arrow_down"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:scaleType="centerInside"
+        android:contentDescription="下移" />
+
+    <ImageButton
+        android:id="@+id/btnEditEngine"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/ic_edit"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:scaleType="centerInside"
+        android:contentDescription="编辑" />
+
+    <ImageButton
+        android:id="@+id/btnDeleteEngine"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/ic_delete"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:scaleType="centerInside"
+        android:tint="@color/danger"
+        android:contentDescription="删除" />
+
+</LinearLayout>
