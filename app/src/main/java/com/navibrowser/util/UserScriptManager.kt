@@ -160,15 +160,17 @@ object UserScriptManager {
         if (p == "<all_urls>") return url.startsWith("http")
         // /regex/ 形式：当作正则
         if (p.startsWith("/") && p.endsWith("/") && p.length > 2) {
-            return try { Regex(p.substring(1, p.length - 1), RegexOption.IGNORE_CASE).containsMatchIn(url) }
-            catch (_: Exception) { false }
+            return try {
+                Regex(p.substring(1, p.length - 1), RegexOption.IGNORE_CASE).containsMatchIn(url)
+            } catch (_: Exception) { false }
         }
         if (!p.contains("://")) {
             // 纯通配片段，直接 includes 判断（兼容旧式 @include）
             return url.contains(p)
         }
-        return try { patternToRegex(p).containsMatchIn(url) }
-        catch (_: Exception) { false }
+        return try {
+            patternToRegex(p).containsMatchIn(url)
+        } catch (_: Exception) { false }
     }
 
     /**
