@@ -72,7 +72,7 @@ object UserScriptManager {
     /** 从一段代码推断应使用的匹配规则（合并 @match 与 @include）。 */
     fun deriveMatchPatterns(meta: ScriptMetadata): String {
         val all = (meta.matches + meta.includes).filter { it.isNotEmpty() }
-        return if (all.isEmpty()) "*://*/*" else all.joinToString(",")
+        return if (all.isEmpty()) "*://*" + "/*" else all.joinToString(",")
     }
 
     fun deriveExcludePatterns(meta: ScriptMetadata): String =
@@ -162,7 +162,9 @@ object UserScriptManager {
         if (p.startsWith("/") && p.endsWith("/") && p.length > 2) {
             return try {
                 Regex(p.substring(1, p.length - 1), RegexOption.IGNORE_CASE).containsMatchIn(url)
-            } catch (_: Exception) { false }
+            } catch (_: Exception) {
+                false
+            }
         }
         if (!p.contains("://")) {
             // 纯通配片段，直接 includes 判断（兼容旧式 @include）
@@ -170,7 +172,9 @@ object UserScriptManager {
         }
         return try {
             patternToRegex(p).containsMatchIn(url)
-        } catch (_: Exception) { false }
+        } catch (_: Exception) {
+            false
+        }
     }
 
     /**
