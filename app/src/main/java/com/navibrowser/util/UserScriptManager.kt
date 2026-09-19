@@ -72,7 +72,7 @@ object UserScriptManager {
     /** 从一段代码推断应使用的匹配规则（合并 @match 与 @include）。 */
     fun deriveMatchPatterns(meta: ScriptMetadata): String {
         val all = (meta.matches + meta.includes).filter { it.isNotEmpty() }
-        return if (all.isEmpty()) "*://*" + "/*" else all.joinToString(",")
+        return if (all.isEmpty()) "*://*" + "/" + "*" else all.joinToString(",")
     }
 
     fun deriveExcludePatterns(meta: ScriptMetadata): String =
@@ -162,7 +162,7 @@ object UserScriptManager {
         if (p.startsWith("/") && p.endsWith("/") && p.length > 2) {
             return try {
                 Regex(p.substring(1, p.length - 1), RegexOption.IGNORE_CASE).containsMatchIn(url)
-            } catch (_: Exception) {
+            } catch (e: Exception) {
                 false
             }
         }
@@ -172,18 +172,16 @@ object UserScriptManager {
         }
         return try {
             patternToRegex(p).containsMatchIn(url)
-        } catch (_: Exception) {
+        } catch (e: Exception) {
             false
         }
     }
 
-    /**
-     * 把 Tampermonkey 的 glob 规则转成正则。
-     * 形如 https://*.example.com/path*?x=*
-     * - scheme 中的 * 匹配 http/https
-     * - host 中的 * 匹配任意子域（含点）
-     * - path/query 中的 * 匹配任意字符
-     */
+    // Convert Tampermonkey glob rules to regex.
+    // Example: https://*.example.com/path*?x=*
+    // - * in scheme matches http/https
+    // - * in host matches any subdomain
+    // - * in path/query matches any chars
     private fun patternToRegex(pattern: String): Regex {
         // 拆分 scheme://host/path?query
         val schemeEnd = pattern.indexOf("://")
